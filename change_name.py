@@ -65,4 +65,10 @@ def change_folder_name(directory, folder_new_name):
     path = Path(directory)
     new_path = os.path.join(os.path.dirname(directory), folder_new_name)
     path.rename(new_path)
-    return path
+    return str(path)
+
+def generate_preview_name(directory, prefix=None, include_folder_name=False ,space_altenative=None, is_lower_cap=False, filename="File Name"):
+    folder_name = os.path.basename(directory) if include_folder_name else None
+    space = space_altenative if space_altenative != None else " "
+    new_name = new_filename(filename, prefix, folder_name, space, is_lower_cap)
+    return new_name
