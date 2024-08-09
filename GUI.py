@@ -1,13 +1,11 @@
 from config import directory, prefix, include_folder_name, space_al, is_lower_cap
-from change_name import change_filenames, change_folder_name, new_filename
+from change_name import change_filenames, change_folder_name, new_filename, generate_preview_name
 from tkinter import *
 from tkinter import filedialog
 
 new_folder_name = None
 folder_name_browse = None
-preview_old = StringVar()
-preview_old.set("File Name")
-preview_name = StringVar()
+
 
 def space_altenative_ok(text):
     return len(text) <= 1
@@ -37,11 +35,25 @@ def browse_folder_cmd():
     folder_directory_entry.insert(0, folder_name_browse)
 
 def update_preview_cmd():
-    # preview_name.set(generate_preview(filename="File Name"))
-    pass
+    global preview_old
+    global preview_name
+    preview_name.set(generate_preview_name(
+                directory=directory,
+                prefix=prefix,
+                space_altenative=space_al,
+                include_folder_name=include_folder_name,
+                is_lower_cap=is_lower_cap,
+                filename=str(preview_old)
+            )
+        )
+    print(str(preview_name))
 
 main = Tk()
 main.geometry("750x750")
+
+preview_old = StringVar()
+preview_old.set("File Name")
+preview_name = StringVar()
 
 #Lower cap tick box
 cap_tick_box = BooleanVar()
@@ -61,8 +73,8 @@ prefix_text_box = Entry(main, textvariable=prefix)
 prefix_text_box.grid(row=3,column=1,columnspan=2, sticky=W)
 
 #Space Alternative
-space_al = Label(main, text="Space alternative")
-space_al.grid(row=4, sticky=W)
+space_al_label = Label(main, text="Space alternative")
+space_al_label.grid(row=4, sticky=W)
 space_al_text_box = Entry(main,
                         textvariable=space_al, 
                         validate='all', 
@@ -103,7 +115,7 @@ preview_old_label.grid(row=10, column=2, columnspan=2)
 
 Label(main,text="New: ").grid(row=11, column=0)
 
-preview_name_label = Label(main, textvariable=new_filename)
+preview_name_label = Label(main, textvariable=preview_name)
 preview_name_label.grid(row=11, column=2, columnspan=2)
 
 #Update preview btn

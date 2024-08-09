@@ -71,4 +71,5 @@ def generate_preview_name(directory, prefix=None, include_folder_name=False ,spa
     folder_name = os.path.basename(directory) if include_folder_name else None
     space = space_altenative if space_altenative != None else " "
     new_name = new_filename(filename, prefix, folder_name, space, is_lower_cap)
+    print (new_name)
     return new_name
