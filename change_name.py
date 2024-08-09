@@ -42,7 +42,7 @@ def new_filename(filename, prefix, folder_name, space, is_lower_cap):
         char space_altenative: alterative character to replace space
         bool is_lower_cap: should all filename be lower cap 
     Return:
-        tring new_name: generated file name
+        string new_name: generated file name
     Raise:
         Exception:
     """
@@ -52,9 +52,11 @@ def new_filename(filename, prefix, folder_name, space, is_lower_cap):
     if folder_name != None:
         new_name = new_name + folder_name + space
     words = filename.split(" ")
+
     for word in words:
         new_name = new_name + word + space
-    new_name = new_name[:-1]
+    if (new_name[-1] == space):
+        new_name = new_name[:-1]
     if is_lower_cap: 
         new_name = new_name.lower();
     return new_name
@@ -71,5 +73,4 @@ def generate_preview_name(directory, prefix=None, include_folder_name=False ,spa
     folder_name = os.path.basename(directory) if include_folder_name else None
     space = space_altenative if space_altenative != None else " "
     new_name = new_filename(filename, prefix, folder_name, space, is_lower_cap)
-    print (new_name)
     return new_name
