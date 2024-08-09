@@ -59,7 +59,19 @@ def update_preview_cmd():
                 filename=preview_old.get()
             )
         )
-
+    
+def change_name_cmd():
+    try:
+        change_filenames(
+            directory=directory,
+            prefix=prefix,
+            space_altenative=space_al,
+            include_folder_name=include_folder_name,
+            is_lower_cap=is_lower_cap,
+        )
+    except Exception as e:
+        create_error_popup(e)
+    
 main = Tk()
 main.geometry("750x750")
 
@@ -138,6 +150,9 @@ preview_name_label.grid(row=11, column=2, columnspan=2)
 update_preview_btn = Button(main, text="Update preview", command=update_preview_cmd, width=50)
 update_preview_btn.grid(row=12, columnspan=2)
 
+#Change name button
+change_name_btn = Button(main, text="Process Change Name", command=change_name_cmd, width=50)
+change_name_btn.grid(row=13, columnspan=2)
 
 main.mainloop();
 
