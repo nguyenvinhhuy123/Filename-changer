@@ -5,6 +5,9 @@ from tkinter import filedialog
 
 new_folder_name = None
 folder_name_browse = None
+preview_old = StringVar()
+preview_old.set("File Name")
+preview_name = StringVar()
 
 def space_altenative_ok(text):
     return len(text) <= 1
@@ -31,7 +34,11 @@ def browse_folder_cmd():
     title="Browse Folder"
     )
     folder_directory_entry.delete(0, END)
-    folder_directory_entry.insert(folder_name_browse)
+    folder_directory_entry.insert(0, folder_name_browse)
+
+def update_preview_cmd():
+    # preview_name.set(generate_preview(filename="File Name"))
+    pass
 
 main = Tk()
 main.geometry("750x750")
@@ -82,8 +89,26 @@ rename_folder_entry = Entry(main, textvariable=new_folder_name, width=40)
 rename_folder_entry.grid(row=8,column=0,columnspan=4, sticky=W)
 
 rename_folder_btn = Button(main, text="Rename", command=change_folder_name_cmd)
-rename_folder_btn.grid(row=8, column=2, sticky=W)
+rename_folder_btn.grid(row=8, column=5, sticky=W, padx= 10)
 
+#Label Preview
+preview_label = Label(main, text="Filename Preview:")
+preview_label.grid(row = 9)
+
+Label(main,text="Old: ").grid(row=10, column=0)
+
+preview_old_label = Label(main, textvariable=preview_old)
+preview_old_label.grid(row=10, column=2, columnspan=2)
+
+
+Label(main,text="New: ").grid(row=11, column=0)
+
+preview_name_label = Label(main, textvariable=new_filename)
+preview_name_label.grid(row=11, column=2, columnspan=2)
+
+#Update preview btn
+update_preview_btn = Button(main, text="Update preview", command=update_preview_cmd, width=50)
+update_preview_btn.grid(row=12, columnspan=2)
 main.mainloop();
 
 
