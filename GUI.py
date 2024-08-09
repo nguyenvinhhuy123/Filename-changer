@@ -62,6 +62,7 @@ def update_preview_cmd():
     
 def change_name_cmd():
     try:
+        update_config()
         change_filenames(
             directory=directory,
             prefix=prefix,
