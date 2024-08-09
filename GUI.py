@@ -3,7 +3,6 @@ from change_name import change_filenames, change_folder_name, new_filename, gene
 from tkinter import *
 from tkinter import filedialog
 
-
 def space_altenative_ok(text):
     return len(text) <= 1
 
@@ -24,7 +23,7 @@ def update_config():
     space_al = space_al_var.get()
 
 
-#*Region: Command 
+#Region: Command 
 def change_folder_name_cmd():
     try:
         global folder_name_browses
@@ -50,6 +49,7 @@ def update_preview_cmd():
     global preview_old
     global preview_name
 
+    update_config()
     preview_name.set(generate_preview_name(
                 directory=directory,
                 prefix=prefix,
@@ -73,6 +73,9 @@ def change_name_cmd():
     except Exception as e:
         create_error_popup(e)
     
+#Engregion
+
+#Region UI
 main = Tk()
 main.geometry("750x750")
 
@@ -149,11 +152,13 @@ preview_name_label.grid(row=11, column=2, columnspan=2)
 
 #Update preview btn
 update_preview_btn = Button(main, text="Update preview", command=update_preview_cmd, width=50)
-update_preview_btn.grid(row=12, columnspan=2)
+update_preview_btn.grid(row=12, columnspan=4)
 
 #Change name button
 change_name_btn = Button(main, text="Process Change Name", command=change_name_cmd, width=50)
-change_name_btn.grid(row=13, columnspan=2)
+change_name_btn.grid(row=13, columnspan=4)
+
+#End region
 
 main.mainloop();
 
