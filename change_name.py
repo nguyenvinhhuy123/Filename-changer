@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+#TODO: Undo change name action
 
 def change_filenames(directory, prefix=None, include_folder_name=False ,space_altenative=None, is_lower_cap=False):
     ''''
@@ -46,9 +47,9 @@ def new_filename(filename, prefix, folder_name, space, is_lower_cap):
         Exception:
     """
     new_name = ""
-    if prefix != None: 
+    if prefix != None and prefix != "": 
         new_name = new_name + prefix + space
-    if folder_name != None:
+    if folder_name != None and folder_name != "":
         new_name = new_name + folder_name + space
     words = filename.split(" ")
 
