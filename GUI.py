@@ -116,6 +116,8 @@ space_al_text_box.grid(row=4,column=1,columnspan=2, sticky=W)
 
 
 #Folder and browse folder
+#TODO: Drag and drop file to browse.
+
 browse_folder_label = Label(main, text="Choose Folder Directory")
 browse_folder_label.grid(row=5, column= 0, columnspan=2, sticky=W)
 

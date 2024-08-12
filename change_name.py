@@ -28,8 +28,7 @@ def change_filenames(directory, prefix=None, include_folder_name=False ,space_al
             continue
         new_name = new_filename(filename, prefix, folder_name, space, is_lower_cap)
         p = Path(path)
-        ext = p.suffix
-        p.rename(Path(p.parent, new_name + ext))
+        p.rename(Path(p.parent, new_name))
     return True
 
 def new_filename(filename, prefix, folder_name, space, is_lower_cap):
