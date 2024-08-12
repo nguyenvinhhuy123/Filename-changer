@@ -28,6 +28,7 @@ def change_folder_name_cmd():
     try:
         global folder_name_browses
         global directory
+        update_config()
         new_path = change_folder_name(directory=directory,folder_new_name=new_folder_name.get())
         directory = new_path
         directory_var.set(directory)
